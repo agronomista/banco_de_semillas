@@ -60,3 +60,22 @@ function addLabel(layer, id) {
       }
   }
 }
+
+/* Carga la interfaz profesional sin alterar la exportación qgis2web. */
+(function loadSeedBankInterface() {
+  if (!document.querySelector('link[data-seedbank-ui]')) {
+    var stylesheet = document.createElement('link');
+    stylesheet.rel = 'stylesheet';
+    stylesheet.href = 'css/seedbank-ui.css';
+    stylesheet.setAttribute('data-seedbank-ui', 'true');
+    document.head.appendChild(stylesheet);
+  }
+
+  if (!document.querySelector('script[data-seedbank-ui]')) {
+    var script = document.createElement('script');
+    script.src = 'js/seedbank-ui.js';
+    script.defer = true;
+    script.setAttribute('data-seedbank-ui', 'true');
+    document.head.appendChild(script);
+  }
+})();
