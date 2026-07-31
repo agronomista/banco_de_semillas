@@ -3,7 +3,15 @@
 
   var MIN_ZOOM = 15;
   var MAX_ZOOM = 19;
-  var highlightedLots = {};
+
+  function escapeHtml(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
 
   function getDestinationFeatures() {
     var data = window.json_sitio_bancosemillasitios_banco_semillas__sitio_agroecosistema_1;
@@ -144,7 +152,6 @@
 
     var destinations = getDestinationFeatures();
     var assignments = findAssignments(lotPaths, destinations);
-    highlightedLots = assignments;
     var focusBounds = L.latLngBounds([]);
 
     destinations.forEach(function (destination) {
@@ -163,7 +170,7 @@
       });
       setPathInteractive(path, true);
       path.bindTooltip(
-        '<span class="sb-lot-label-group">G' + group + '</span><span>' + lot.name + '</span>',
+        '<span class="sb-lot-label-group">G' + escapeHtml(group) + '</span><span>' + escapeHtml(lot.name) + '</span>',
         {
           permanent: true,
           direction: 'center',
