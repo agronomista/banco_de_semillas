@@ -24,35 +24,24 @@ function resetLabels(markers) {
 }
 
 function addLabel(layer, id) {
-
-  // This is ugly but there is no getContainer method on the tooltip :(
   if (layer.getTooltip()) {
       var label = layer.getTooltip()._source._tooltip._container;
       if (label) {
-
-        // We need the bounding rectangle of the label itself
         var rect = label.getBoundingClientRect();
-
-        // We convert the container coordinates (screen space) to Lat/lng
         var bottomLeft = map.containerPointToLatLng([rect.left, rect.bottom]);
         var topRight = map.containerPointToLatLng([rect.right, rect.top]);
         var boundingBox = {
           bottomLeft : [bottomLeft.lng, bottomLeft.lat],
           topRight   : [topRight.lng, topRight.lat]
         };
-
-        // Ingest the label into labelgun itself
         labelEngine.ingestLabel(
           boundingBox,
           id,
-          parseInt(Math.random() * (5 - 1) + 1), // Weight
+          parseInt(Math.random() * (5 - 1) + 1),
           label,
           "Test " + id,
           false
         );
-
-        // If the label hasn't been added to the map already
-        // add it and set the added flag to true
         if (!layer.added) {
           layer.addTo(map);
           layer.added = true;
@@ -61,7 +50,7 @@ function addLabel(layer, id) {
   }
 }
 
-/* Carga la interfaz profesional sin alterar la exportación qgis2web. */
+/* Carga la guía de lotes sin alterar la exportación qgis2web. */
 (function loadSeedBankInterface() {
   if (!document.querySelector('link[data-seedbank-ui]')) {
     var stylesheet = document.createElement('link');
@@ -71,11 +60,24 @@ function addLabel(layer, id) {
     document.head.appendChild(stylesheet);
   }
 
-  if (!document.querySelector('script[data-seedbank-ui]')) {
+  function loadInterfaceScript() {
+    if (document.querySelector('script[data-seedbank-ui]')) return;
     var script = document.createElement('script');
     script.src = 'js/seedbank-ui.js';
     script.defer = true;
     script.setAttribute('data-seedbank-ui', 'true');
     document.head.appendChild(script);
+  }
+
+  if (!document.querySelector('script[data-lotes-content]')) {
+    var contentScript = document.createElement('script');
+    contentScript.src = 'data/lotes-content.js';
+    contentScript.defer = true;
+    contentScript.setAttribute('data-lotes-content', 'true');
+    contentScript.onload = loadInterfaceScript;
+    contentScript.onerror = loadInterfaceScript;
+    document.head.appendChild(contentScript);
+  } else {
+    loadInterfaceScript();
   }
 })();
