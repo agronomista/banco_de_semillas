@@ -1,0 +1,39 @@
+/* Evita ampliar y recortar las fotografías de baja resolución en los popups. */
+.sb-gallery {
+  justify-items: center;
+  border-radius: 12px;
+  background: #edf3ef;
+  overflow: hidden;
+}
+
+.sb-gallery img,
+.sb-gallery img:only-child {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 220px;
+  margin: 0 auto;
+  object-fit: contain;
+  image-rendering: auto;
+}
+
+.sb-gallery img:only-child {
+  grid-column: 1 / -1;
+}
+
+/* Los SVG publicados actualmente tienen 200 px de ancho.
+   Se limita su ampliación para no inventar píxeles y conservar nitidez. */
+.sb-gallery img[src$=".svg"] {
+  width: min(200px, 100%);
+}
+
+.leaflet-popup-content {
+  width: min(240px, 72vw) !important;
+}
+
+@media (min-resolution: 2dppx) {
+  .sb-gallery img[src$=".svg"] {
+    width: min(180px, 100%);
+  }
+}
