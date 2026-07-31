@@ -1,0 +1,81 @@
+/* Simplificación de controles y estilo cartográfico para la guía estudiantil. */
+.leaflet-control-layers {
+  display: none !important;
+}
+
+.sb-lot-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  max-width: 118px;
+  margin: 0;
+  padding: 5px 7px;
+  border: 1px solid rgba(23, 56, 43, 0.14);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 5px 14px rgba(23, 56, 43, 0.13);
+  backdrop-filter: blur(5px);
+  color: #17382b;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: center;
+  white-space: normal;
+}
+
+.sb-lot-label::before {
+  display: none;
+}
+
+.sb-lot-label-group {
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 4px;
+  border-radius: 7px;
+  background: #17382b;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.sb-map-close .sb-lot-label {
+  font-size: 12px;
+}
+
+.leaflet-control-zoom,
+.leaflet-control-locate,
+.leaflet-control-measure {
+  border: 0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 22px rgba(23, 56, 43, 0.18) !important;
+  overflow: hidden;
+}
+
+.leaflet-bar a,
+.leaflet-bar a:hover {
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  border-color: rgba(23, 56, 43, 0.1);
+  color: #17382b;
+}
+
+@media (max-width: 720px) {
+  .sb-lot-label {
+    max-width: 92px;
+    gap: 4px;
+    padding: 4px 5px;
+    font-size: 10px;
+  }
+
+  .sb-lot-label-group {
+    min-width: 21px;
+    height: 21px;
+    font-size: 9px;
+  }
+}

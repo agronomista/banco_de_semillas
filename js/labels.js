@@ -50,7 +50,7 @@ function addLabel(layer, id) {
   }
 }
 
-/* Carga la guía de lotes sin alterar la exportación qgis2web. */
+/* Carga la guía de lotes y las mejoras cartográficas sin alterar qgis2web. */
 (function loadSeedBankInterface() {
   if (!document.querySelector('link[data-seedbank-ui]')) {
     var stylesheet = document.createElement('link');
@@ -60,12 +60,34 @@ function addLabel(layer, id) {
     document.head.appendChild(stylesheet);
   }
 
+  if (!document.querySelector('link[data-map-aesthetics]')) {
+    var mapStylesheet = document.createElement('link');
+    mapStylesheet.rel = 'stylesheet';
+    mapStylesheet.href = 'css/map-aesthetics.css';
+    mapStylesheet.setAttribute('data-map-aesthetics', 'true');
+    document.head.appendChild(mapStylesheet);
+  }
+
+  function loadMapAesthetics() {
+    if (document.querySelector('script[data-map-aesthetics]')) return;
+    var mapScript = document.createElement('script');
+    mapScript.src = 'js/map-aesthetics.js';
+    mapScript.defer = true;
+    mapScript.setAttribute('data-map-aesthetics', 'true');
+    document.head.appendChild(mapScript);
+  }
+
   function loadInterfaceScript() {
-    if (document.querySelector('script[data-seedbank-ui]')) return;
+    if (document.querySelector('script[data-seedbank-ui]')) {
+      loadMapAesthetics();
+      return;
+    }
     var script = document.createElement('script');
     script.src = 'js/seedbank-ui.js';
     script.defer = true;
     script.setAttribute('data-seedbank-ui', 'true');
+    script.onload = loadMapAesthetics;
+    script.onerror = loadMapAesthetics;
     document.head.appendChild(script);
   }
 
