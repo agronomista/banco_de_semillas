@@ -1,21 +1,33 @@
-/* Simplificación de controles y estilo cartográfico para la guía estudiantil. */
+/* Acabado visual profesional para la guía estudiantil y sus controles Leaflet. */
+:root {
+  --sb-control-size: 42px;
+  --sb-control-radius: 14px;
+  --sb-control-bg: rgba(255, 255, 255, 0.96);
+  --sb-control-hover: #edf6f0;
+  --sb-control-ink: #17382b;
+  --sb-control-border: rgba(23, 56, 43, 0.12);
+  --sb-control-shadow: 0 10px 28px rgba(23, 56, 43, 0.18);
+  --sb-control-shadow-hover: 0 13px 30px rgba(23, 56, 43, 0.24);
+}
+
 .leaflet-control-layers {
   display: none !important;
 }
 
+/* Etiquetas de los seis lotes de interés. */
 .sb-lot-label {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  max-width: 118px;
+  gap: 6px;
+  max-width: 132px;
   margin: 0;
-  padding: 5px 7px;
-  border: 1px solid rgba(23, 56, 43, 0.14);
-  border-radius: 9px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 5px 14px rgba(23, 56, 43, 0.13);
-  backdrop-filter: blur(5px);
+  padding: 6px 8px;
+  border: 1px solid rgba(23, 56, 43, 0.13);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 7px 18px rgba(23, 56, 43, 0.14);
+  backdrop-filter: blur(8px);
   color: #17382b;
   font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 11px;
@@ -33,12 +45,13 @@
   flex: 0 0 auto;
   display: inline-grid;
   place-items: center;
-  min-width: 24px;
-  height: 24px;
+  min-width: 25px;
+  height: 25px;
   padding: 0 4px;
-  border-radius: 7px;
-  background: #17382b;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #214f3b, #16372a);
   color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
   font-size: 10px;
   font-weight: 900;
 }
@@ -47,35 +60,391 @@
   font-size: 12px;
 }
 
+/* Contenedores de los controles cartográficos. */
+.leaflet-top.leaflet-left {
+  margin-top: 8px;
+  margin-left: 8px;
+}
+
 .leaflet-control-zoom,
 .leaflet-control-locate,
 .leaflet-control-measure {
-  border: 0 !important;
-  border-radius: 12px !important;
-  box-shadow: 0 8px 22px rgba(23, 56, 43, 0.18) !important;
+  border: 1px solid var(--sb-control-border) !important;
+  border-radius: var(--sb-control-radius) !important;
+  background: var(--sb-control-bg) !important;
+  box-shadow: var(--sb-control-shadow) !important;
+  backdrop-filter: blur(10px);
   overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-.leaflet-bar a,
-.leaflet-bar a:hover {
-  width: 34px;
-  height: 34px;
-  line-height: 34px;
-  border-color: rgba(23, 56, 43, 0.1);
+.leaflet-control-zoom:hover,
+.leaflet-control-locate:hover,
+.leaflet-control-measure:hover {
+  box-shadow: var(--sb-control-shadow-hover) !important;
+}
+
+/* Botones de zoom, ubicación y medición. */
+.leaflet-control-zoom a,
+.leaflet-control-locate a,
+.leaflet-control-measure .leaflet-control-measure-toggle {
+  box-sizing: border-box;
+  width: var(--sb-control-size) !important;
+  height: var(--sb-control-size) !important;
+  min-width: var(--sb-control-size) !important;
+  min-height: var(--sb-control-size) !important;
+  display: grid !important;
+  place-items: center;
+  border: 0 !important;
+  border-bottom: 1px solid var(--sb-control-border) !important;
+  background: transparent !important;
+  color: var(--sb-control-ink) !important;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 20px !important;
+  font-weight: 700;
+  line-height: 1 !important;
+  text-decoration: none;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.leaflet-control-zoom a:last-child,
+.leaflet-control-locate a:last-child,
+.leaflet-control-measure .leaflet-control-measure-toggle:last-child {
+  border-bottom: 0 !important;
+}
+
+.leaflet-control-zoom a:hover,
+.leaflet-control-locate a:hover,
+.leaflet-control-measure .leaflet-control-measure-toggle:hover {
+  background: var(--sb-control-hover) !important;
+  color: #0f2f22 !important;
+}
+
+.leaflet-control-zoom a:active,
+.leaflet-control-locate a:active,
+.leaflet-control-measure .leaflet-control-measure-toggle:active {
+  transform: scale(0.94);
+}
+
+.leaflet-control-zoom a:focus-visible,
+.leaflet-control-locate a:focus-visible,
+.leaflet-control-measure .leaflet-control-measure-toggle:focus-visible,
+.sb-btn:focus-visible,
+.sb-group:focus-visible,
+.sb-mobile-toggle:focus-visible,
+.sb-close:focus-visible {
+  outline: 3px solid rgba(73, 145, 105, 0.34) !important;
+  outline-offset: 2px;
+}
+
+.leaflet-control-zoom a.leaflet-disabled {
+  background: #f4f5f4 !important;
+  color: #9ca69f !important;
+  cursor: not-allowed;
+}
+
+/* El botón de ubicación se distingue sin romper el estilo general. */
+.leaflet-control-locate a {
+  color: #1f694a !important;
+}
+
+.leaflet-control-locate.active a,
+.leaflet-control-locate.following a,
+.leaflet-control-locate.requesting a {
+  background: #214f3b !important;
+  color: #fff !important;
+}
+
+.leaflet-control-locate.requesting a::before {
+  animation: sb-location-pulse 1.15s ease-in-out infinite;
+}
+
+@keyframes sb-location-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(0.92); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+/* Panel desplegable de medición. */
+.leaflet-control-measure .leaflet-control-measure-interaction {
+  border: 1px solid var(--sb-control-border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: var(--sb-control-shadow);
+  color: var(--sb-control-ink);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.leaflet-control-measure .leaflet-control-measure-interaction h3 {
   color: #17382b;
 }
 
+.leaflet-control-measure a.start,
+.leaflet-control-measure a.cancel,
+.leaflet-control-measure a.finish {
+  border-radius: 9px;
+  font-weight: 750;
+}
+
+/* Botones generales de la aplicación. */
+.sb-btn,
+.sb-mobile-toggle,
+.sb-close {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sb-btn {
+  min-height: 44px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  padding: 0 17px;
+  box-shadow: 0 7px 18px rgba(23, 56, 43, 0.1);
+  font-weight: 800;
+  letter-spacing: 0.005em;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.sb-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 11px 24px rgba(23, 56, 43, 0.17);
+}
+
+.sb-btn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 5px 12px rgba(23, 56, 43, 0.13);
+}
+
+.sb-btn-primary {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(145deg, #275d46, #17382b);
+  color: #fff;
+}
+
+.sb-btn-primary:hover {
+  background: linear-gradient(145deg, #2f6b50, #1c4534);
+}
+
+.sb-btn-light {
+  border-color: rgba(23, 56, 43, 0.1);
+  background: rgba(255, 255, 255, 0.97);
+  color: #17382b;
+}
+
+.sb-btn-light:hover {
+  background: #f2f8f4;
+  border-color: rgba(23, 56, 43, 0.18);
+}
+
+.sb-btn-soft {
+  border-color: rgba(23, 56, 43, 0.08);
+  background: #e9f3ed;
+  color: #17382b;
+  box-shadow: none;
+}
+
+.sb-btn-soft:hover {
+  background: #dcece2;
+  border-color: rgba(23, 56, 43, 0.15);
+}
+
+/* Tarjetas de grupo G1–G6. */
+.sb-groups {
+  gap: 10px;
+}
+
+.sb-group {
+  position: relative;
+  min-height: 62px;
+  padding: 10px 11px;
+  border: 1px solid rgba(23, 56, 43, 0.11);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 4px 12px rgba(23, 56, 43, 0.055);
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.sb-group::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: #347456;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.sb-group:hover {
+  border-color: rgba(52, 116, 86, 0.28);
+  background: #f5faf7;
+  box-shadow: 0 9px 22px rgba(23, 56, 43, 0.11);
+  transform: translateY(-2px);
+}
+
+.sb-group.active {
+  border-color: rgba(52, 116, 86, 0.42);
+  background: #edf6f0;
+  box-shadow: 0 10px 24px rgba(23, 56, 43, 0.14);
+  transform: translateY(-1px);
+}
+
+.sb-group:hover::before,
+.sb-group.active::before {
+  opacity: 1;
+}
+
+.sb-group:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.sb-group-number {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #214f3b, #16372a);
+  box-shadow: 0 7px 16px rgba(23, 56, 43, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.sb-group:hover .sb-group-number,
+.sb-group.active .sb-group-number {
+  transform: scale(1.04);
+  box-shadow: 0 9px 19px rgba(23, 56, 43, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.17);
+}
+
+.sb-group-copy strong {
+  color: #17382b;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.sb-group-copy small {
+  color: #6b776f;
+  font-size: 11px;
+}
+
+.sb-group-arrow {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: #eef5f0;
+  color: #347456;
+  font-size: 16px;
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.sb-group:hover .sb-group-arrow,
+.sb-group.active .sb-group-arrow {
+  background: #214f3b;
+  color: #fff;
+  transform: translateX(2px);
+}
+
+/* Botón móvil y cierre del editor. */
+.sb-mobile-toggle {
+  min-height: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  background: linear-gradient(145deg, #275d46, #17382b);
+  box-shadow: 0 14px 32px rgba(23, 56, 43, 0.32);
+  font-weight: 800;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.sb-mobile-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(23, 56, 43, 0.37);
+}
+
+.sb-mobile-toggle:active {
+  transform: scale(0.98);
+}
+
+.sb-close {
+  border: 1px solid rgba(23, 56, 43, 0.08);
+  background: #edf5f0;
+  color: #17382b;
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.sb-close:hover {
+  background: #dcece2;
+  transform: rotate(4deg) scale(1.04);
+}
+
+.sb-preview button {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.2);
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.sb-preview button:hover {
+  background: rgba(132, 47, 47, 0.94);
+  transform: scale(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leaflet-control-zoom,
+  .leaflet-control-locate,
+  .leaflet-control-measure,
+  .leaflet-control-zoom a,
+  .leaflet-control-locate a,
+  .leaflet-control-measure .leaflet-control-measure-toggle,
+  .sb-btn,
+  .sb-group,
+  .sb-group-number,
+  .sb-group-arrow,
+  .sb-mobile-toggle,
+  .sb-close {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
 @media (max-width: 720px) {
+  :root {
+    --sb-control-size: 44px;
+  }
+
+  .leaflet-top.leaflet-left {
+    margin-top: 6px;
+    margin-left: 6px;
+  }
+
   .sb-lot-label {
-    max-width: 92px;
+    max-width: 98px;
     gap: 4px;
-    padding: 4px 5px;
+    padding: 5px 6px;
     font-size: 10px;
   }
 
   .sb-lot-label-group {
-    min-width: 21px;
-    height: 21px;
+    min-width: 22px;
+    height: 22px;
     font-size: 9px;
+  }
+
+  .sb-group {
+    min-height: 60px;
+  }
+
+  .sb-btn {
+    min-height: 46px;
+  }
+}
+
+@media (max-width: 460px) {
+  .sb-group-number {
+    width: 42px;
+    height: 42px;
+  }
+
+  .sb-group-arrow {
+    width: 28px;
+    height: 28px;
   }
 }
