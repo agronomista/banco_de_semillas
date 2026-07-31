@@ -3,10 +3,6 @@
   display: none !important;
 }
 
-.leaflet-control-container .leaflet-top.leaflet-right {
-  display: none;
-}
-
 .sb-lot-label {
   display: inline-flex;
   align-items: center;
