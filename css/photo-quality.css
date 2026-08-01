@@ -1,7 +1,29 @@
-/* Muestra las fotografías originales completas dentro de popups compactos. */
+/* Presentación ultracompacta de fotografías y contenido en los popups. */
+.leaflet-popup {
+  max-width: 280px !important;
+}
+
+.leaflet-popup-content-wrapper {
+  width: 280px;
+  max-width: 82vw;
+  border-radius: 14px;
+}
+
+.leaflet-popup-content {
+  width: auto !important;
+  max-width: none !important;
+  margin: 10px 12px 12px !important;
+}
+
+.sb-popup {
+  min-width: 0 !important;
+  width: 100%;
+}
+
 .sb-gallery {
   justify-items: center;
-  border-radius: 12px;
+  margin-bottom: 8px !important;
+  border-radius: 10px;
   background: #edf3ef;
   overflow: hidden;
 }
@@ -11,9 +33,10 @@
   display: block;
   width: 100%;
   max-width: 100%;
-  height: auto;
-  max-height: 260px;
+  height: 145px !important;
+  max-height: 145px !important;
   margin: 0 auto;
+  border-radius: 9px !important;
   object-fit: contain;
   image-rendering: auto;
 }
@@ -22,35 +45,59 @@
   grid-column: 1 / -1;
 }
 
-.leaflet-popup-content {
-  width: min(320px, 82vw) !important;
-  max-width: 82vw !important;
+.sb-popup-title {
+  gap: 6px !important;
 }
 
-.leaflet-popup-content-wrapper {
-  border-radius: 16px;
+.sb-popup h3 {
+  font-size: 16px !important;
+  line-height: 1.15;
 }
 
-@media (max-width: 720px) {
-  .leaflet-popup-content {
-    width: min(300px, 80vw) !important;
-    max-width: 80vw !important;
-  }
+.sb-badge {
+  padding: 4px 7px !important;
+  font-size: 10px !important;
+}
 
-  .sb-gallery img,
-  .sb-gallery img:only-child {
-    max-height: 230px;
-  }
+.sb-popup > p {
+  margin: 6px 0 !important;
+  font-size: 12px !important;
+  line-height: 1.35 !important;
+}
+
+.sb-directions {
+  margin-top: 7px !important;
+  padding: 8px 9px !important;
+  border-radius: 9px !important;
+}
+
+.sb-directions strong,
+.sb-directions p {
+  font-size: 11px !important;
+}
+
+.sb-directions p {
+  margin-top: 3px !important;
+  line-height: 1.35 !important;
 }
 
 @media (max-width: 420px) {
-  .leaflet-popup-content {
-    width: min(280px, 78vw) !important;
-    max-width: 78vw !important;
+  .leaflet-popup {
+    max-width: 250px !important;
+  }
+
+  .leaflet-popup-content-wrapper {
+    width: 250px;
+    max-width: 78vw;
   }
 
   .sb-gallery img,
   .sb-gallery img:only-child {
-    max-height: 210px;
+    height: 125px !important;
+    max-height: 125px !important;
+  }
+
+  .sb-popup h3 {
+    font-size: 15px !important;
   }
 }
