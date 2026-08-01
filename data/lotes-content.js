@@ -1,56 +1,56 @@
 window.BANCO_SEMILLAS_CONTENIDO = {
-  "version": 3,
-  "updatedAt": "2026-07-31T19:57:00-06:00",
+  "version": 4,
+  "updatedAt": "2026-07-31T21:23:00-06:00",
   "lots": [
     {
       "group": "1",
       "key": "agroecologia",
-      "name": "Lote Agroecología",
+      "name": "Lote de Agroecología",
       "description": "Destino asignado al grupo 1.",
       "instructions": "Selecciona este punto en el mapa y sigue las indicaciones del docente.",
       "photos": [
         {
           "src": "images/lotes/lote_agroecologia.jpg",
-          "alt": "Vista aérea del Lote Agroecología"
+          "alt": "Vista aérea del Lote de Agroecología"
         }
       ]
     },
     {
       "group": "2",
-      "key": "lote-36",
-      "name": "Lote 36",
+      "key": "mip-28",
+      "name": "Lote 28 de MIP",
       "description": "Destino asignado al grupo 2.",
       "instructions": "Selecciona este punto en el mapa y sigue las indicaciones del docente.",
       "photos": [
         {
-          "src": "images/lotes/lote_36.jpg",
-          "alt": "Vista aérea del Lote 36"
+          "src": "images/lotes/lote_MIP.jpg",
+          "alt": "Vista aérea del Lote 28 de MIP"
         }
       ]
     },
     {
       "group": "3",
-      "key": "coberturas",
-      "name": "Lote Coberturas",
+      "key": "coberturas-27",
+      "name": "Lote 27 de Coberturas",
       "description": "Destino asignado al grupo 3.",
       "instructions": "Selecciona este punto en el mapa y sigue las indicaciones del docente.",
       "photos": [
         {
-          "src": "images/lotes/lote_MIP.jpg",
-          "alt": "Vista aérea del Lote Coberturas"
+          "src": "images/lotes/lote_MIP28.jpg",
+          "alt": "Vista aérea del Lote 27 de Coberturas"
         }
       ]
     },
     {
       "group": "4",
-      "key": "mip",
-      "name": "Lote MIP",
+      "key": "lote-36",
+      "name": "Lote 36",
       "description": "Destino asignado al grupo 4.",
       "instructions": "Selecciona este punto en el mapa y sigue las indicaciones del docente.",
       "photos": [
         {
-          "src": "images/lotes/lote_MIP28.jpg",
-          "alt": "Vista aérea del Lote MIP"
+          "src": "images/lotes/lote_36.jpg",
+          "alt": "Vista aérea del Lote 36"
         }
       ]
     },
@@ -70,13 +70,13 @@ window.BANCO_SEMILLAS_CONTENIDO = {
     {
       "group": "6",
       "key": "mango",
-      "name": "Lote Mango",
+      "name": "Lote de Mango",
       "description": "Destino asignado al grupo 6.",
       "instructions": "Selecciona este punto en el mapa y sigue las indicaciones del docente.",
       "photos": [
         {
           "src": "images/lotes/lote_mango.jpg",
-          "alt": "Vista aérea del Lote Mango"
+          "alt": "Vista aérea del Lote de Mango"
         }
       ]
     }
