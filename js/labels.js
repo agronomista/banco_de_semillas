@@ -84,7 +84,25 @@ function addLabel(layer, id) {
     document.head.appendChild(fullscreenStylesheet);
   }
 
+  if (!document.querySelector('link[data-form-link]')) {
+    var formLinkStylesheet = document.createElement('link');
+    formLinkStylesheet.rel = 'stylesheet';
+    formLinkStylesheet.href = 'css/form-link.css?v=1';
+    formLinkStylesheet.setAttribute('data-form-link', 'true');
+    document.head.appendChild(formLinkStylesheet);
+  }
+
+  function loadFormLink() {
+    if (document.querySelector('script[data-form-link]')) return;
+    var formLinkScript = document.createElement('script');
+    formLinkScript.src = 'js/form-link.js?v=1';
+    formLinkScript.defer = true;
+    formLinkScript.setAttribute('data-form-link', 'true');
+    document.head.appendChild(formLinkScript);
+  }
+
   function loadPopupFraming() {
+    loadFormLink();
     if (document.querySelector('script[data-popup-framing]')) return;
     var framingScript = document.createElement('script');
     framingScript.src = 'js/popup-framing.js';
