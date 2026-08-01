@@ -79,7 +79,7 @@ function addLabel(layer, id) {
   if (!document.querySelector('link[data-fullscreen-map]')) {
     var fullscreenStylesheet = document.createElement('link');
     fullscreenStylesheet.rel = 'stylesheet';
-    fullscreenStylesheet.href = 'css/fullscreen-map.css';
+    fullscreenStylesheet.href = 'css/fullscreen-map.css?v=2';
     fullscreenStylesheet.setAttribute('data-fullscreen-map', 'true');
     document.head.appendChild(fullscreenStylesheet);
   }
@@ -93,17 +93,31 @@ function addLabel(layer, id) {
     document.head.appendChild(framingScript);
   }
 
+  function loadMapDataFixes() {
+    if (document.querySelector('script[data-map-data-fixes]')) {
+      loadPopupFraming();
+      return;
+    }
+    var fixesScript = document.createElement('script');
+    fixesScript.src = 'js/map-data-fixes.js?v=1';
+    fixesScript.defer = true;
+    fixesScript.setAttribute('data-map-data-fixes', 'true');
+    fixesScript.onload = loadPopupFraming;
+    fixesScript.onerror = loadPopupFraming;
+    document.head.appendChild(fixesScript);
+  }
+
   function loadMapAesthetics() {
     if (document.querySelector('script[data-map-aesthetics]')) {
-      loadPopupFraming();
+      loadMapDataFixes();
       return;
     }
     var mapScript = document.createElement('script');
     mapScript.src = 'js/map-aesthetics.js';
     mapScript.defer = true;
     mapScript.setAttribute('data-map-aesthetics', 'true');
-    mapScript.onload = loadPopupFraming;
-    mapScript.onerror = loadPopupFraming;
+    mapScript.onload = loadMapDataFixes;
+    mapScript.onerror = loadMapDataFixes;
     document.head.appendChild(mapScript);
   }
 
