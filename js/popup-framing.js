@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var TARGET_ZOOM = 17;
+  var TARGET_ZOOM = 16.5;
 
   function waitForMap() {
     var attempts = 0;
@@ -18,6 +18,7 @@
   function installFraming() {
     if (map._seedbankFramingInstalled) return;
     map._seedbankFramingInstalled = true;
+    map.options.zoomSnap = 0.5;
 
     var originalFlyTo = map.flyTo.bind(map);
 
@@ -36,16 +37,16 @@
 
         var zoom = Math.min(map.getZoom(), TARGET_ZOOM);
         var markerPoint = map.project(source.getLatLng(), zoom);
-        var verticalOffset = window.innerWidth <= 720 ? 82 : 105;
-        var horizontalOffset = window.innerWidth > 720 ? -40 : 0;
+        var verticalOffset = window.innerWidth <= 720 ? 102 : 132;
+        var horizontalOffset = window.innerWidth > 720 ? -28 : 0;
         var centerPoint = markerPoint.subtract([horizontalOffset, verticalOffset]);
         var center = map.unproject(centerPoint, zoom);
 
         originalFlyTo(center, zoom, {
-          duration: 0.45,
-          easeLinearity: 0.25
+          duration: 0.55,
+          easeLinearity: 0.22
         });
-      }, 40);
+      }, 45);
     });
   }
 

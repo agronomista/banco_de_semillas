@@ -1,18 +1,18 @@
-/* Presentación ultracompacta de fotografías y contenido en los popups. */
+/* Presentación compacta y equilibrada de fotografías y contenido en los popups. */
 .leaflet-popup {
-  max-width: 280px !important;
+  max-width: 270px !important;
 }
 
 .leaflet-popup-content-wrapper {
-  width: 280px;
-  max-width: 82vw;
+  width: 270px;
+  max-width: 80vw;
   border-radius: 14px;
 }
 
 .leaflet-popup-content {
   width: auto !important;
   max-width: none !important;
-  margin: 10px 12px 12px !important;
+  margin: 9px 11px 11px !important;
 }
 
 .sb-popup {
@@ -22,7 +22,7 @@
 
 .sb-gallery {
   justify-items: center;
-  margin-bottom: 8px !important;
+  margin-bottom: 7px !important;
   border-radius: 10px;
   background: #edf3ef;
   overflow: hidden;
@@ -33,8 +33,8 @@
   display: block;
   width: 100%;
   max-width: 100%;
-  height: 145px !important;
-  max-height: 145px !important;
+  height: 115px !important;
+  max-height: 115px !important;
   margin: 0 auto;
   border-radius: 9px !important;
   object-fit: contain;
@@ -83,18 +83,18 @@
 
 @media (max-width: 420px) {
   .leaflet-popup {
-    max-width: 250px !important;
+    max-width: 245px !important;
   }
 
   .leaflet-popup-content-wrapper {
-    width: 250px;
-    max-width: 78vw;
+    width: 245px;
+    max-width: 76vw;
   }
 
   .sb-gallery img,
   .sb-gallery img:only-child {
-    height: 125px !important;
-    max-height: 125px !important;
+    height: 105px !important;
+    max-height: 105px !important;
   }
 
   .sb-popup h3 {
