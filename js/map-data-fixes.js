@@ -1,0 +1,134 @@
+(function () {
+  'use strict';
+
+  var ORIGINAL_LAYER_NAME = 'layer_sitio_bancosemillasitios_banco_semillas__sitio_agroecosistema_1';
+  var attempts = 0;
+  var timer = null;
+
+  function getOriginalDestinationLayer() {
+    return window[ORIGINAL_LAYER_NAME] || null;
+  }
+
+  function removeOriginalDestinationLayer() {
+    var originalLayer = getOriginalDestinationLayer();
+    if (window.map && originalLayer && map.hasLayer(originalLayer)) {
+      map.removeLayer(originalLayer);
+    }
+  }
+
+  function tooltipText(path) {
+    if (!path || typeof path.getTooltip !== 'function') return '';
+    var tooltip = path.getTooltip();
+    if (!tooltip) return '';
+    var content = tooltip.getContent();
+    if (typeof content === 'string') {
+      return content.replace(/<[^>]*>/g, ' ');
+    }
+    return content && content.textContent ? content.textContent : '';
+  }
+
+  function clearForestPolygon() {
+    var lotLayer = window.layer_lotes_0;
+    if (!lotLayer || typeof lotLayer.eachLayer !== 'function') return;
+
+    lotLayer.eachLayer(function (path) {
+      if (!/(^|\s)G5(\s|$)/i.test(tooltipText(path))) return;
+
+      path.off('click');
+      if (path.unbindTooltip) path.unbindTooltip();
+      if (path.unbindPopup) path.unbindPopup();
+
+      if (path.setStyle) {
+        path.setStyle({
+          color: '#8a978f',
+          weight: 0.8,
+          opacity: 0.58,
+          fillColor: '#dfe6e1',
+          fillOpacity: 0.13,
+          dashArray: ''
+        });
+      }
+
+      path.options.interactive = false;
+      if (path._path) {
+        path._path.classList.remove('leaflet-interactive');
+        path._path.style.pointerEvents = 'none';
+      }
+    });
+  }
+
+  function removeTopBanner() {
+    var topbar = document.querySelector('.sb-topbar');
+    var bannerWasRemoved = false;
+
+    if (topbar) {
+      var actions = topbar.querySelector('.sb-actions');
+      if (actions && actions.children.length) {
+        actions.classList.add('sb-actions-floating');
+        document.body.appendChild(actions);
+      }
+      topbar.remove();
+      bannerWasRemoved = true;
+    }
+
+    var mapElement = document.getElementById('map');
+    if (mapElement) {
+      mapElement.style.setProperty('inset', '0', 'important');
+      mapElement.style.setProperty('top', '0', 'important');
+    }
+
+    var panel = document.querySelector('.sb-panel');
+    if (panel && window.innerWidth > 720) {
+      panel.style.setProperty('top', '18px', 'important');
+    }
+
+    if (bannerWasRemoved && window.map && typeof map.invalidateSize === 'function') {
+      window.setTimeout(function () {
+        map.invalidateSize({ animate: false });
+      }, 0);
+    }
+  }
+
+  function applyFixes() {
+    removeOriginalDestinationLayer();
+    clearForestPolygon();
+    removeTopBanner();
+  }
+
+  function install() {
+    if (!window.map || !window.L) return false;
+    if (map._seedbankDataFixesInstalled) return true;
+    map._seedbankDataFixesInstalled = true;
+
+    map.on('layeradd', function (event) {
+      var originalLayer = getOriginalDestinationLayer();
+      if (originalLayer && event.layer === originalLayer) {
+        window.setTimeout(removeOriginalDestinationLayer, 0);
+      }
+      window.setTimeout(clearForestPolygon, 40);
+    });
+
+    return true;
+  }
+
+  function waitAndApply() {
+    attempts += 1;
+    install();
+    applyFixes();
+
+    if (attempts >= 50) {
+      window.clearInterval(timer);
+    }
+  }
+
+  function start() {
+    waitAndApply();
+    timer = window.setInterval(waitAndApply, 100);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();

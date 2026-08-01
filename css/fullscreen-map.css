@@ -1,25 +1,21 @@
 /* Mapa a pantalla completa: elimina el banner visual sin perder el modo editor. */
 #map {
   inset: 0 !important;
+  top: 0 !important;
 }
 
 .sb-topbar {
-  height: 0 !important;
-  padding: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  pointer-events: none;
-}
-
-.sb-brand {
   display: none !important;
 }
 
-.sb-actions {
+.sb-actions.sb-actions-floating {
   position: fixed;
   top: 14px;
   right: 374px;
   z-index: 2100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   pointer-events: auto;
 }
 
@@ -31,9 +27,10 @@
 @media (max-width: 720px) {
   #map {
     inset: 0 !important;
+    top: 0 !important;
   }
 
-  .sb-actions {
+  .sb-actions.sb-actions-floating {
     top: 12px;
     right: 12px;
   }
