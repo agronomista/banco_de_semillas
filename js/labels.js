@@ -68,6 +68,14 @@ function addLabel(layer, id) {
     document.head.appendChild(mapStylesheet);
   }
 
+  if (!document.querySelector('link[data-photo-quality]')) {
+    var photoStylesheet = document.createElement('link');
+    photoStylesheet.rel = 'stylesheet';
+    photoStylesheet.href = 'css/photo-quality.css';
+    photoStylesheet.setAttribute('data-photo-quality', 'true');
+    document.head.appendChild(photoStylesheet);
+  }
+
   function loadMapAesthetics() {
     if (document.querySelector('script[data-map-aesthetics]')) return;
     var mapScript = document.createElement('script');
