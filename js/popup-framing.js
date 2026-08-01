@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var TARGET_ZOOM = 16.5;
+  var TARGET_ZOOM = 18;
   var installedMarkers = [];
   var navigationToken = 0;
 
@@ -57,12 +57,12 @@
     map.stop();
     map.once('moveend', finish);
     map.flyTo(marker.getLatLng(), TARGET_ZOOM, {
-      duration: 0.75,
+      duration: 0.85,
       easeLinearity: 0.24,
       noMoveStart: false
     });
 
-    window.setTimeout(finish, 1000);
+    window.setTimeout(finish, 1200);
   }
 
   function installMarkers() {
