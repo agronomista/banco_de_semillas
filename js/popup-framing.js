@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var TARGET_ZOOM = 18;
+  var TARGET_ZOOM = 19;
   var installedMarkers = [];
   var navigationToken = 0;
 
