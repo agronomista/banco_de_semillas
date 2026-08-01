@@ -1,0 +1,45 @@
+/* Mapa a pantalla completa: elimina el banner visual sin perder el modo editor. */
+#map {
+  inset: 0 !important;
+}
+
+.sb-topbar {
+  height: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  pointer-events: none;
+}
+
+.sb-brand {
+  display: none !important;
+}
+
+.sb-actions {
+  position: fixed;
+  top: 14px;
+  right: 374px;
+  z-index: 2100;
+  pointer-events: auto;
+}
+
+.sb-panel {
+  top: 18px !important;
+  max-height: calc(100vh - 36px) !important;
+}
+
+@media (max-width: 720px) {
+  #map {
+    inset: 0 !important;
+  }
+
+  .sb-actions {
+    top: 12px;
+    right: 12px;
+  }
+
+  .sb-panel {
+    top: auto !important;
+    max-height: 70vh !important;
+  }
+}
