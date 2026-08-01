@@ -1,4 +1,4 @@
-/* Muestra las fotografías originales completas y nítidas dentro de los popups. */
+/* Muestra las fotografías originales completas dentro de popups compactos. */
 .sb-gallery {
   justify-items: center;
   border-radius: 12px;
@@ -12,7 +12,7 @@
   width: 100%;
   max-width: 100%;
   height: auto;
-  max-height: 420px;
+  max-height: 260px;
   margin: 0 auto;
   object-fit: contain;
   image-rendering: auto;
@@ -23,8 +23,8 @@
 }
 
 .leaflet-popup-content {
-  width: min(420px, 88vw) !important;
-  max-width: 88vw !important;
+  width: min(320px, 82vw) !important;
+  max-width: 82vw !important;
 }
 
 .leaflet-popup-content-wrapper {
@@ -33,24 +33,24 @@
 
 @media (max-width: 720px) {
   .leaflet-popup-content {
-    width: min(360px, 86vw) !important;
-    max-width: 86vw !important;
+    width: min(300px, 80vw) !important;
+    max-width: 80vw !important;
   }
 
   .sb-gallery img,
   .sb-gallery img:only-child {
-    max-height: 340px;
+    max-height: 230px;
   }
 }
 
 @media (max-width: 420px) {
   .leaflet-popup-content {
-    width: min(330px, 84vw) !important;
-    max-width: 84vw !important;
+    width: min(280px, 78vw) !important;
+    max-width: 78vw !important;
   }
 
   .sb-gallery img,
   .sb-gallery img:only-child {
-    max-height: 300px;
+    max-height: 210px;
   }
 }
