@@ -16,30 +16,6 @@
     }
   }
 
-  function markerGroup(layer) {
-    if (!layer || typeof layer.getLatLng !== 'function') return null;
-    var title = layer.options && layer.options.title;
-    var match = String(title || '').match(/^Grupo\s+(\d+)/i);
-    return match ? match[1] : null;
-  }
-
-  function deduplicateGuideMarkers() {
-    if (!window.map) return;
-
-    var markersByGroup = {};
-    map.eachLayer(function (layer) {
-      var group = markerGroup(layer);
-      if (!group) return;
-
-      if (!markersByGroup[group]) {
-        markersByGroup[group] = layer;
-        return;
-      }
-
-      map.removeLayer(layer);
-    });
-  }
-
   function tooltipText(path) {
     if (!path || typeof path.getTooltip !== 'function') return '';
     var tooltip = path.getTooltip();
@@ -115,7 +91,6 @@
 
   function applyFixes() {
     removeOriginalDestinationLayer();
-    deduplicateGuideMarkers();
     clearForestPolygon();
     removeTopBanner();
   }
@@ -130,10 +105,7 @@
       if (originalLayer && event.layer === originalLayer) {
         window.setTimeout(removeOriginalDestinationLayer, 0);
       }
-      window.setTimeout(function () {
-        deduplicateGuideMarkers();
-        clearForestPolygon();
-      }, 40);
+      window.setTimeout(clearForestPolygon, 40);
     });
 
     return true;
