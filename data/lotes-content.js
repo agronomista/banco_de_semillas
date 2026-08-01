@@ -1,6 +1,6 @@
 window.BANCO_SEMILLAS_CONTENIDO = {
-  "version": 2,
-  "updatedAt": "2026-07-31T14:38:00-06:00",
+  "version": 3,
+  "updatedAt": "2026-07-31T19:57:00-06:00",
   "lots": [
     {
       "group": "1",
@@ -10,7 +10,7 @@ window.BANCO_SEMILLAS_CONTENIDO = {
       "instructions": "Selecciona este punto en el mapa y sigue las indicaciones del docente.",
       "photos": [
         {
-          "src": "images/lotes/agroecologia.svg",
+          "src": "images/lotes/lote_agroecologia.jpg",
           "alt": "Vista aérea del Lote Agroecología"
         }
       ]
@@ -23,7 +23,7 @@ window.BANCO_SEMILLAS_CONTENIDO = {
       "instructions": "Selecciona este punto en el mapa y sigue las indicaciones del docente.",
       "photos": [
         {
-          "src": "images/lotes/lote-36.svg",
+          "src": "images/lotes/lote_36.jpg",
           "alt": "Vista aérea del Lote 36"
         }
       ]
@@ -36,7 +36,7 @@ window.BANCO_SEMILLAS_CONTENIDO = {
       "instructions": "Selecciona este punto en el mapa y sigue las indicaciones del docente.",
       "photos": [
         {
-          "src": "images/lotes/coberturas.svg",
+          "src": "images/lotes/lote_MIP.jpg",
           "alt": "Vista aérea del Lote Coberturas"
         }
       ]
@@ -49,7 +49,7 @@ window.BANCO_SEMILLAS_CONTENIDO = {
       "instructions": "Selecciona este punto en el mapa y sigue las indicaciones del docente.",
       "photos": [
         {
-          "src": "images/lotes/mip.svg",
+          "src": "images/lotes/lote_MIP28.jpg",
           "alt": "Vista aérea del Lote MIP"
         }
       ]
@@ -62,7 +62,7 @@ window.BANCO_SEMILLAS_CONTENIDO = {
       "instructions": "Selecciona este punto en el mapa y sigue las indicaciones del docente.",
       "photos": [
         {
-          "src": "images/lotes/bosque.svg",
+          "src": "images/lotes/lote_bosque.jpg",
           "alt": "Vista aérea del Lote Bosque"
         }
       ]
@@ -75,7 +75,7 @@ window.BANCO_SEMILLAS_CONTENIDO = {
       "instructions": "Selecciona este punto en el mapa y sigue las indicaciones del docente.",
       "photos": [
         {
-          "src": "images/lotes/mango.svg",
+          "src": "images/lotes/lote_mango.jpg",
           "alt": "Vista aérea del Lote Mango"
         }
       ]
