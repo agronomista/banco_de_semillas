@@ -83,6 +83,8 @@
 
   function removeTopBanner() {
     var topbar = document.querySelector('.sb-topbar');
+    var bannerWasRemoved = false;
+
     if (topbar) {
       var actions = topbar.querySelector('.sb-actions');
       if (actions && actions.children.length) {
@@ -90,6 +92,7 @@
         document.body.appendChild(actions);
       }
       topbar.remove();
+      bannerWasRemoved = true;
     }
 
     var mapElement = document.getElementById('map');
@@ -102,6 +105,12 @@
     if (panel && window.innerWidth > 720) {
       panel.style.setProperty('top', '18px', 'important');
     }
+
+    if (bannerWasRemoved && window.map && typeof map.invalidateSize === 'function') {
+      window.setTimeout(function () {
+        map.invalidateSize({ animate: false });
+      }, 0);
+    }
   }
 
   function applyFixes() {
@@ -109,10 +118,6 @@
     deduplicateGuideMarkers();
     clearForestPolygon();
     removeTopBanner();
-
-    if (window.map && typeof map.invalidateSize === 'function') {
-      map.invalidateSize({ animate: false });
-    }
   }
 
   function install() {
