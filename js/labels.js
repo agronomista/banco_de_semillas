@@ -76,6 +76,14 @@ function addLabel(layer, id) {
     document.head.appendChild(photoStylesheet);
   }
 
+  if (!document.querySelector('link[data-fullscreen-map]')) {
+    var fullscreenStylesheet = document.createElement('link');
+    fullscreenStylesheet.rel = 'stylesheet';
+    fullscreenStylesheet.href = 'css/fullscreen-map.css';
+    fullscreenStylesheet.setAttribute('data-fullscreen-map', 'true');
+    document.head.appendChild(fullscreenStylesheet);
+  }
+
   function loadPopupFraming() {
     if (document.querySelector('script[data-popup-framing]')) return;
     var framingScript = document.createElement('script');
