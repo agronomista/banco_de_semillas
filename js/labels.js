@@ -76,12 +76,26 @@ function addLabel(layer, id) {
     document.head.appendChild(photoStylesheet);
   }
 
+  function loadPopupFraming() {
+    if (document.querySelector('script[data-popup-framing]')) return;
+    var framingScript = document.createElement('script');
+    framingScript.src = 'js/popup-framing.js';
+    framingScript.defer = true;
+    framingScript.setAttribute('data-popup-framing', 'true');
+    document.head.appendChild(framingScript);
+  }
+
   function loadMapAesthetics() {
-    if (document.querySelector('script[data-map-aesthetics]')) return;
+    if (document.querySelector('script[data-map-aesthetics]')) {
+      loadPopupFraming();
+      return;
+    }
     var mapScript = document.createElement('script');
     mapScript.src = 'js/map-aesthetics.js';
     mapScript.defer = true;
     mapScript.setAttribute('data-map-aesthetics', 'true');
+    mapScript.onload = loadPopupFraming;
+    mapScript.onerror = loadPopupFraming;
     document.head.appendChild(mapScript);
   }
 
