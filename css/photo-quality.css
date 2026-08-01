@@ -1,4 +1,4 @@
-/* Evita ampliar y recortar las fotografías de baja resolución en los popups. */
+/* Mejora la visualización de las fotografías dentro de los popups. */
 .sb-gallery {
   justify-items: center;
   border-radius: 12px;
@@ -12,7 +12,7 @@
   width: auto;
   max-width: 100%;
   height: auto;
-  max-height: 220px;
+  max-height: 320px;
   margin: 0 auto;
   object-fit: contain;
   image-rendering: auto;
@@ -22,18 +22,40 @@
   grid-column: 1 / -1;
 }
 
-/* Los SVG publicados actualmente tienen 200 px de ancho.
-   Se limita su ampliación para no inventar píxeles y conservar nitidez. */
+/* Los SVG actuales tienen 200 px de ancho. Se permite una ampliación
+   moderada para que la fotografía se aprecie mejor sin exagerar la pérdida. */
 .sb-gallery img[src$=".svg"] {
-  width: min(200px, 100%);
+  width: min(300px, 100%);
 }
 
 .leaflet-popup-content {
-  width: min(240px, 72vw) !important;
+  width: min(380px, 88vw) !important;
+  max-width: 88vw !important;
 }
 
-@media (min-resolution: 2dppx) {
+.leaflet-popup-content-wrapper {
+  border-radius: 16px;
+}
+
+@media (max-width: 720px) {
+  .leaflet-popup-content {
+    width: min(340px, 86vw) !important;
+    max-width: 86vw !important;
+  }
+
   .sb-gallery img[src$=".svg"] {
-    width: min(180px, 100%);
+    width: min(280px, 100%);
+  }
+}
+
+@media (max-width: 420px) {
+  .leaflet-popup-content {
+    width: min(320px, 84vw) !important;
+    max-width: 84vw !important;
+  }
+
+  .sb-gallery img,
+  .sb-gallery img:only-child {
+    max-height: 280px;
   }
 }
